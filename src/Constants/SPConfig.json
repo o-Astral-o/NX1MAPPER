@@ -1,0 +1,9 @@
+﻿{
+  "Addresses": {
+    "PoolsAddress": "8280B530",
+    "PoolSizesAddress": "8280B230",
+    "StringTableAddress": "83DE7A00",
+    "ImageStreamTableAddress": "830B6580"
+  },
+  "IsMP": false
+}

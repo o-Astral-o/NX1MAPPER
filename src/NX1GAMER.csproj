@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Constants\SPConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Constants\MPConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.49.1" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Compression.Oodle\RedFox.Compression.Oodle.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Compression.ZLIB\ClassLibrary1\RedFox.Compression.ZLIB.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Compression.ZStandard\RedFox.Compression.ZStandard.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Compression\RedFox.Compression.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Cryptography.MurMur3\RedFox.Cryptography.MurMur3\RedFox.Cryptography.MurMur3.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Graphics3D.AnimationPlayback\RedFox.Graphics3D.AnimationPlayback.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Graphics3D.SEAnim\RedFox.Graphics3D.SEAnim.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Graphics3D.SEModel\RedFox.Graphics3D.SEModel.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Graphics3D.Translation\RedFox.Graphics3D.Translation.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Graphics3D\RedFox.Graphics3D.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.IO.ProcessInterop\RedFox.IO.ProcessInterop.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.IO\RedFox.IO.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.UI\RedFox.UI.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox.Zenith\RedFox.Zenith.csproj" />
+    <ProjectReference Include="..\ext\RedFox\src\cs\RedFox\RedFox.csproj" />
+  </ItemGroup>
+
+</Project>

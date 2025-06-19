@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "NX1GAMER": {
+      "commandName": "Project",
+      "commandLineArgs": "Constants/MPConfig.json \"C:\\Users\\Admin\\Downloads\\John\\out.dat\" C:\\Users\\Admin\\Downloads\\hac\\NX1",
+      "nativeDebugging": true
+    }
+  }
+}

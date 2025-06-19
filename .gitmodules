@@ -1,0 +1,3 @@
+[submodule "ext/RedFox"]
+	path = ext/RedFox
+	url = https://github.com/Scobalula/RedFox
