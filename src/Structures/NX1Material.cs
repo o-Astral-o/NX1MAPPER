@@ -30,16 +30,27 @@ namespace NX1GAMER.Structures
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct MaterialConstantDef
     {
-        [FieldOffset(0x0)] 
+        [FieldOffset(0x00)] 
         public uint NameHash;
-        [FieldOffset(0x4)]
-        public fixed char Name[12];
-        [FieldOffset(0x10)]
+        [FieldOffset(0x04)] 
+        public fixed byte Name[12];
+        [FieldOffset(0x10)] 
         public Vector4 Literal;
+
+        public string GetNameFragment()
+        {
+            fixed (byte* p = Name)
+            {
+                var span = new ReadOnlySpan<byte>(p, 12);
+                int len = span.IndexOf((byte)0);
+                if (len < 0) len = 12;
+                return Encoding.ASCII.GetString(span.Slice(0, len));
+            }
+        }
     }
     
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
-    public unsafe struct TechniqueSet
+    public struct TechniqueSet
     {
         public uint Name { get; set; }
         public byte WorldVertFormat { get; set; }

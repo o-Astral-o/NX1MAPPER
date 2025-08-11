@@ -6,6 +6,7 @@ using RedFox.Graphics3D.Skeletal;
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -20,6 +21,7 @@ using static System.Net.Mime.MediaTypeNames;
 using C2M;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Spectre.Console;
 
 namespace NX1GAMER.AssetPools
 {
@@ -57,6 +59,10 @@ namespace NX1GAMER.AssetPools
         {
             // Read GFXMap
             var gfxMap = instance.Memory.ReadStruct<GfxMap>(asset.Address);
+            
+            AnsiConsole.MarkupLine($"[blue]Exporting Map:[/] [purple]{asset.Name}[/]");
+            AnsiConsole.MarkupLine($"[blue]Surfaces:[/]      [green]{gfxMap.SurfaceCount.AsBE()}[/]");
+            AnsiConsole.MarkupLine($"[blue]Static Models:[/] [green]{gfxMap.SModelCount.AsBE()}[/]\n");
 
             // Create CoDMap
             var codMap = new CoDMap(asset.Name, CoDVersion.NX1);
@@ -79,6 +85,8 @@ namespace NX1GAMER.AssetPools
             Directory.CreateDirectory(outputPath);
             var fileName = Path.Combine(outputPath, asset.Name);
             
+            AnsiConsole.MarkupLine("[green]Saving Map Files[/]\n");
+            
             // Save Files
             C2M_2.ExportC2M_2(fileName + ".c2m", codMap);
             File.WriteAllText(fileName + "_mapEnts.txt", codMap.MapEnts);
@@ -88,6 +96,8 @@ namespace NX1GAMER.AssetPools
             File.WriteAllText(fileName + "_models.json", modelJson);
             string lightsJson = JToken.FromObject(codMap.Lights).ToString(Formatting.Indented);
             File.WriteAllText(fileName + "_lights.json", lightsJson);
+            
+            AnsiConsole.MarkupLine("[green]Export Successful![/]");
         }
 
         public static void LoadModels(GameInstance instance)
@@ -179,7 +189,7 @@ namespace NX1GAMER.AssetPools
                     case 2: type = LightType.Spot; break;
                     case 3: type = LightType.Point; break;
                     default:
-                        Console.WriteLine(String.Format("Unkown Light Type: {0}", light.Type));
+                        AnsiConsole.MarkupLine($"[red]Unknown Light Type: {light.Type}[/]");
                         type = LightType.Spot;
                         break;
                 }
@@ -350,7 +360,7 @@ namespace NX1GAMER.AssetPools
                 }
 
                 if (layerPadding == 1 && worldVertFormat != 0)
-                    Console.WriteLine();
+                    AnsiConsole.MarkupLine($"[red]Unknown World Vert Format: {worldVertFormat}[/]");
 
                 int surfLayerUvTracker = 0;
                 for (ushort i = 0; i < faceCount; i++)
@@ -461,8 +471,6 @@ namespace NX1GAMER.AssetPools
                     euler,
                     scale,
                     InstanceType.Static));
-
-                Console.WriteLine();
             }
         }
 
@@ -694,7 +702,7 @@ namespace NX1GAMER.AssetPools
                 var nameHash = constant.NameHash.AsBE();
                 var value = new Vector4D(constant.Literal.X.AsBE(), constant.Literal.Y.AsBE(), constant.Literal.Z.AsBE(), constant.Literal.W.AsBE());
 
-                string constantName = new string(constant.Name).TrimEnd('\0');
+                string constantName = constant.GetNameFragment();
                 
                 var materialIndex = 0;
                 if (wniPackage.assetNames.ContainsKey(nameHash))

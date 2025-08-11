@@ -35,9 +35,7 @@ namespace NX1GAMER
         {
             Pools.ForEach(x =>
             {
-                AnsiConsole.MarkupLine($"the poolo: [green]{x.Name}[/] is loading lmao");
                 x.LoadGeneric();
-                AnsiConsole.MarkupLine($"ficj she loaded [green]{x.Assets.Count}[/] thingos");
             });
             return this;
         }

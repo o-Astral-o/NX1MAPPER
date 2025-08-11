@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace C2M
 {
     public static class BinaryReaderExtensions

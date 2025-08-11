@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Runtime.InteropServices;
 namespace C2M
 {
@@ -41,7 +43,7 @@ namespace C2M
                 Header.MapVersion = map.Version;
                 Header.Name = map.Name;
                 Header.SkyBoxInfo = map.SkyBoxInfo;
-                Header.ObjectsCount = (uint)map.Objects.Count();
+                Header.ObjectsCount = (uint)map.Objects.Count;
                 Header.ObjectsOffset = (ulong)writer.BaseStream.Position;
                 // Write objects
                 foreach (var obj in map.Objects)
@@ -50,7 +52,7 @@ namespace C2M
                     obj.WriteBin(writer);
                 }
                 // Header update
-                Header.MaterialsCount = (uint)map.Materials.Count();
+                Header.MaterialsCount = (uint)map.Materials.Count;
                 Header.MaterialsOffset = (ulong)writer.BaseStream.Position;
                 // Write materials
                 foreach (var material in map.Materials.Values)
@@ -74,7 +76,7 @@ namespace C2M
                     }
                 }
                 // Header update
-                Header.InstancesCount = (uint)map.ModelInstances.Count();
+                Header.InstancesCount = (uint)map.ModelInstances.Count;
                 Header.InstanceOffset = (ulong)writer.BaseStream.Position;
                 // Write model instances
                 foreach (var model_instance in map.ModelInstances)
@@ -120,7 +122,7 @@ namespace C2M
                 //     writer.WriteString(imageName);
                 // }
                 // Header update
-                Header.LightsCount = (uint)map.Lights.Count();
+                Header.LightsCount = (uint)map.Lights.Count;
                 Header.LightsOffset = (ulong)writer.BaseStream.Position;
                 // Write lights
                 foreach (var light in map.Lights)
