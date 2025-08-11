@@ -1,5 +1,2 @@
-# NX1GAMER
-
-sometimes gaming
-
-code under ext is mit license src is do whatever you want
+# NX1MAPPER
+Exports C2M files from Call of Duty: Future Warfare (NX1)

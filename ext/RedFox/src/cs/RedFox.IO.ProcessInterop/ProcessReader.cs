@@ -8,6 +8,7 @@ using System.Runtime.Versioning;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.System.ProcessStatus;
+using RedFox;
 
 namespace RedFox.IO.ProcessInterop
 {

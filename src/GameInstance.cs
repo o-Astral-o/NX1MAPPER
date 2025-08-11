@@ -28,10 +28,7 @@ namespace NX1GAMER
             GameFolder = gameFolder;
             TranslatorFactory = new Graphics3DTranslatorFactory().WithDefaultTranslators();
 
-            Pools.Add(new XModelPool(this, "xmodel", 4, 288));
-            Pools.Add(new NX1XAnimPool(this, "xanim", 2, 88));
-            // Pools.Add(new ImagePool(this, "image", 8, 112));
-            // Pools.Add(new ImagePool(this, "loadedsounds", 12, 100));
+            Pools.Add(new GfxMapPool(this, "gfxMap", (int)XAssetType.GFXWORLD, 0x2D8));
         }
 
         public GameInstance Initialize()

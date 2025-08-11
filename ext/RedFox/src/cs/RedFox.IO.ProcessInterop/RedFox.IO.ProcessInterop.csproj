@@ -13,4 +13,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RedFox\RedFox.csproj" />
+    <ProjectReference Include="..\RedFox.IO\RedFox.IO.csproj" />
+  </ItemGroup>
+
 </Project>
